@@ -10,3 +10,5 @@ $(document).ready(function() {
 //if there is no EE bus data, get weekend bus data
 
 //put data on screen
+$('#north').html('<h1>EE Northbound at Liberty St.</h1>')
+$('#south').html('<h1>EE Southbound at Rockoff</h1>')
