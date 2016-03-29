@@ -1,4 +1,10 @@
 //pulls NextBus data for the appropriate buses
+libertyID = 1053;
+rockoffID = 1043;
+
+var getStopTimes = function(stop){
+
+};
 
 //init
 $(document).ready(function() {
