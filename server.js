@@ -19,7 +19,11 @@ app.get('/api/plaza', function(req, res) {
       res.send(data);
       console.log(data);
     }
-  }, 'seconds');
+  }, 'minutes');
+});
+
+app.get('*', function(req,res) {
+  res.sendfile('./public/index.html');
 });
 
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html ng-app="rutgersHUD" ng-controller="bus_data" lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,15 +21,12 @@
     <![endif]-->
   </head>
   <body>
-    <div class="jumbotron">
-      <div class="container" id="north">
+    <div class="jumbotron" ng-repeat="bus in bus_times | filter:{predictions: ''}">
+      <div class="container">
+      <h1>{{bus.title}} in {{bus.predictions}}</h1>
       </div>
     </div>
 
-    <div class="jumbotron">
-      <div class="container" id="south">
-      </div>
-    </div>
 
     <div class="container">
       <hr>
@@ -40,9 +37,10 @@
     </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/getBuses.js"></script>
+    <script src="js/core.js"></script>
   </body>
 </html>
