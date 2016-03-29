@@ -7,7 +7,7 @@
     <meta http-equiv="refresh" content="60">
     <meta name="description" content="HUD for buses and trains at Rockoff">
   	<meta name="author" content="Matt Goldman">
-    <title>Rockoff HUD</title>
+    <title>Rutgers HUD</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -23,7 +23,10 @@
   <body>
     <div class="jumbotron" ng-repeat="bus in bus_times | filter:{predictions: ''}">
       <div class="container">
-      <h1>{{bus.title}} in {{bus.predictions}}</h1>
+      <h1>
+        {{bus.title}} in 
+          <span ng-repeat="time in bus.predictions">{{time}}, </span>
+      </h1>
       </div>
     </div>
 
