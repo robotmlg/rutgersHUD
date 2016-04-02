@@ -10,8 +10,7 @@
     <title>Rutgers HUD</title>
 
     <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -21,12 +20,31 @@
     <![endif]-->
   </head>
   <body>
-    <div class="jumbotron" ng-repeat="bus in bus_times | filter:{predictions: ''}">
+    <nav class="navbar navbar-inverse">
       <div class="container">
-      <h1>
-        {{bus.title}} in 
-          <span ng-repeat="time in bus.predictions">{{time}}, </span>
-      </h1>
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">Rutgers Bus HUD</a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar-main">
+          <ul class="nav navbar-nav">
+            <li><a href="/">Livingston Plaza Stop</a></li>
+            <li><a href="/">Change Stop</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div>
+      <div class="jumbotron" ng-repeat="bus in bus_times | filter:{predictions: ''}">
+        <div class="container">
+          <h1>
+            {{bus.title}} in 
+              <span ng-repeat="time in bus.predictions">{{time}}</span>
+          </h1>
+          <h2>
+            {{bus.direction}}
+          </h2>
+        </div>
       </div>
     </div>
 
@@ -34,7 +52,7 @@
     <div class="container">
       <hr>
       <footer>
-        <p>&copy; Matt Goldman 2015</p>
+        <p>&copy; Matt Goldman 2016</p>
         <p><a href="http://mattgoldman.us">mattgoldman.us</a></p>
       </footer>
     </div>
