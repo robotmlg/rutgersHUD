@@ -1,10 +1,12 @@
 
-var rutgersHUD = angular.module('rutgersHUD', []);
+var rutgersHUD = angular.module('rutgersHUD', ['ngCookies']);
 
-rutgersHUD.controller('bus_data', function($scope, $http, $interval){
+var global_stop = 'Livingston Plaza';
 
-  function update_times(){
-    $http.get("/api/plaza")
+rutgersHUD.controller('data-display', function($scope, $http, $interval, $cookies){
+
+  function update_times(stop){
+    $http.get("/api/times?stop=" + stop)
       .then(function(response) {
         // get the data
         my_data = response.data;
@@ -28,13 +30,39 @@ rutgersHUD.controller('bus_data', function($scope, $http, $interval){
         }
         // send data to page
         $scope.bus_times = my_data;
+        $scope.global_stop = global_stop;
       });
   }
 
-  update_times();
+  function get_stops(){
+    $http.get('/api/stops')
+      .then( function(response) {
+        $scope.stops_list = response.data;
+        stops_list = response.data;
+      });
+  }
+
+  $scope.set_stop = function(stop_str){
+    console.log("setting stop to "+stop_str);
+    global_stop = stop_str;
+    $cookies.put("rutgersHUDstop",stop_str);//set the cookie
+    update_times(global_stop);
+  }
+
+  // retrieve the stop from the cookie if it exists
+  temp = $cookies.get("rutgersHUDstop");
+  if (temp){
+    global_stop = temp;
+    console.log("Got cookie "+global_stop+". Yum!");
+  }
+  
+
+  update_times(global_stop);
+  get_stops();
 
   $interval(function(){
-    update_times();
+    update_times(global_stop);
+    get_stops();
   }, 30000);
 
 });

@@ -9,9 +9,14 @@ app.use(express.static(__dirname + '/public'));
 
 // routes
 // get the predictions for a stop (only the plaza right now)
-app.get('/api/plaza', function(req, res) {
+app.get('/api/times', function(req, res) {
   console.log("getting bus times");
-  buses.stopPredict('Livingston Plaza', null, function(err, data) {
+  console.log(req.query);
+  if (req.query.stop == null){
+    console.log("NO STOP");
+    res.send("NO STOP");
+  }
+  buses.stopPredict(req.query.stop, null, function(err, data) {
     if (err){
       console.log(err);
       res.send(err);
