@@ -8,6 +8,7 @@ app.use(express.static(__dirname + '/public'));
 // get the bus stops from https://rumobile.rutgers.edu/1/rutgersrouteconfig.txt
 
 // routes
+// get the predictions for a stop (only the plaza right now)
 app.get('/api/plaza', function(req, res) {
   console.log("getting bus times");
   buses.stopPredict('Livingston Plaza', null, function(err, data) {
@@ -22,10 +23,25 @@ app.get('/api/plaza', function(req, res) {
   }, 'minutes');
 });
 
+// get the active stops
+app.get('/api/stops', function(req, res) {
+  console.log("Getting active stops");
+  buses.guessActive( function(err,data) {
+    //console.log(data);
+    active_stops = [];
+    for (s in data.stops){
+      //console.log(data.stops[s]);
+      active_stops.push(data.stops[s].title);
+    }
+    console.log(active_stops);
+    res.send(active_stops);
+  });
+});
+
+// get the main page
 app.get('*', function(req,res) {
   res.sendfile('./public/index.html');
 });
-
 
 console.log("building agency cache");
 
@@ -36,6 +52,9 @@ buses.cacheAgency('rutgers', function (err) {
   } else {
     app.listen(8080);
     console.log("App listening on port 8080");
+    buses.guessActive( function(err,data) {
+      console.log(data);
+    });
   }
 });
 
