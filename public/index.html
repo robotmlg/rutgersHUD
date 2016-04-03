@@ -39,29 +39,27 @@
       </div>
     </nav>
 
-    <div>
-      <div class="jumbotron" ng-repeat="bus in bus_times | filter:{predictions: ''}">
-        <div class="container">
-          <h1>
-            {{bus.title}} in 
-              <span ng-repeat="time in bus.predictions">{{time}}</span>
-          </h1>
-          <h2>
-            {{bus.direction}}
-          </h2>
-        </div>
+    <div class="jumbotron" ng-repeat="bus in bus_times | filter:{predictions: ''}">
+      <div class="container">
+        <h1>
+          {{bus.title}} in 
+            <span ng-repeat="time in bus.predictions">{{time}}</span>
+        </h1>
+        <h2>
+          {{bus.direction}}
+        </h2>
       </div>
     </div>
-
-
-    <div class="container">
-      <hr>
-      <footer>
-        <p>&copy; Matt Goldman 2016</p>
-        <p><a href="http://mattgoldman.us">mattgoldman.us</a></p>
-      </footer>
-    </div>
-
+    
+    <footer>
+      <div class="container">
+        <ul class="list-inline">
+          <li>&copy; Matt Goldman 2016</li>
+          <li><a target="_blank" href="https://mattgoldman.us">mattgoldman.us</a></li>
+        </ul>
+        <p>Problem with the site?  <a target="_blank" href="https://www.github.com/robotmlg/rutgersHUD">Submit a patch on github</a>.</p>
+      </div>
+    </footer>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
